@@ -8,7 +8,7 @@ cssmin      = require 'gulp-cssmin'
 jade        = require 'gulp-jade'
 minifyHTML  = require 'gulp-minify-html'
 svgmin      = require 'gulp-svgmin'
-coffee-lint = require 'gulp-coffeelint'
+coffeelint  = require 'gulp-coffeelint'
 nodemon     = require 'gulp-nodemon'
 
 # Create your CSS from Sass, Autoprexif it to target 99%
@@ -31,7 +31,7 @@ gulp.task 'coffee', ->
     .pipe gulp.dest './lib/'
 
 # Lint CoffeeScript in src
-gulp.task 'coffee-lint', ->
+gulp.task 'lint', ->
   gulp.src './src/**/*.coffee'
     .pipe coffeelint()
     .pipe coffeelint.reporter()
@@ -43,7 +43,7 @@ gulp.task 'develop', ->
     ext:    'coffee jade svg scss',
     env:    { 'NODE_ENV': 'development' }
   })
-    .on 'change', ['coffee-lint', 'coffee', 'css', 'html', 'svg']
+    .on 'change', ['lint', 'coffee', 'css', 'html', 'svg']
     .on 'restart', ->
       console.log 'restarted'
 
